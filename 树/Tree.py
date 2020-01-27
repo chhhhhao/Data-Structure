@@ -193,7 +193,7 @@ class LinkedBinaryTree(BinaryTree):
         if not self.is_leaf(p):
             raise ValueError("position must be leaf")
         if not type(self) is type(t1) is type(t2):
-            raise TypeError("Tree types must much")
+            raise TypeError("Tree types must match")
         self._size += len(t1) + len(t2)
         if not t1.is_empty():
             t1._root._parent = node

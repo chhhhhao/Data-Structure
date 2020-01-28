@@ -50,6 +50,36 @@ class Tree:
             p = self.root()
         return self._height2(p)
 
+    def positions(self):
+        return self.preorder()
+
+    def __iter__(self):
+        for p in self.positions():
+            yield p.element()
+
+    # 先序遍历
+    def preorder(self):
+        # Generator
+        if not self.is_empty():
+            return self._subtree_preorder(self.root())
+
+    def _subtree_preorder(self, p):
+        # Generator
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def postorder(self):
+        if not self.is_empty():
+            return self._subtree_postorder(self.root())
+
+    def _subtree_postorder(self, p):
+        for c in self.children(p):
+            for other in self._subtree_postorder(c):
+                yield other
+        yield p
+
 
 class BinaryTree(Tree):
     def left(self, p):

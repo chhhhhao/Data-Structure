@@ -1,4 +1,4 @@
-from _DoublyLinkedBase import _DoublyLinkedBase, Empty
+from DoublyLinkedBase import _DoublyLinkedBase
 
 
 class PositionalList(_DoublyLinkedBase):

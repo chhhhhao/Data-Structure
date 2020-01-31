@@ -69,13 +69,21 @@ class PositionalList(_DoublyLinkedBase):
         node = self._validate(p)
         return self._insert_between(e, node, node._next)
 
-    def replace(p, e):
+    def replace(self, p, e):
         node = self._validate(p)
         element = node._element
         node._element = e
         return element
 
-    def delete(p):
+    def delete(self, p):
         node = self._validate(p)
         return self._delete_node(node)
 
+
+if __name__ == "__main__":
+    l = PositionalList()
+    l.add_last(1)
+    l.add_last(2)
+    l.add_last(3)
+    p = l.last()
+    print(l.delete(p))

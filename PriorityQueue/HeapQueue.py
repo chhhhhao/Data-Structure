@@ -18,7 +18,7 @@ class HeapPriorityQueue(PriorityQueueBase):
     def _has_left(self, j):
         return self._left < len(self._data)
 
-    def _has_right(sefl, j):
+    def _has_right(self, j):
         return self._right < len(self._data)
 
     def _swap(self, i, j):

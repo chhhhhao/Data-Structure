@@ -1,4 +1,8 @@
-from BinaryTree import BinaryTree
+import sys
+
+sys.path.append("/Users/haochen/Desktop/python/Data Structure/Tree")
+
+from BTree import BinaryTree
 
 
 class LinkedBinaryTree(BinaryTree):

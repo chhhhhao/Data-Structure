@@ -1,4 +1,4 @@
-from Tree import Tree
+from TreeBase import Tree
 
 
 class BinaryTree(Tree):

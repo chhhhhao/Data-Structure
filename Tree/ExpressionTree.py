@@ -1,4 +1,4 @@
-from LinkedBinaryTree import LinkedBinaryTree
+from LinkedBTree import LinkedBinaryTree
 from StackAndQueue.stack import ArrayStack
 
 

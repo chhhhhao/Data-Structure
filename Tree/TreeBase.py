@@ -2,7 +2,7 @@ import sys
 
 sys.path.append("/Users/haochen/Desktop/python/Data Structure")
 
-from LinkedList import LinkedQueue
+from LinkedList.LinkedQueue import LinkedQueue
 
 
 class Tree:
@@ -64,6 +64,27 @@ class Tree:
         for p in self.positions():
             yield p.element()
 
+    def display(self):
+        levels = []
+        start = LinkedQueue()
+        start.enqueue(self.root())
+        self._BFS_add(0, start, levels)
+        return levels
+
+    def _BFS_add(self, d, q, levels):
+        tmp = LinkedQueue()
+        if q.is_empty():
+            return
+        else:
+            while not q.is_empty():
+                p = q.dequeue()
+                if d == len(levels):
+                    levels.append([])
+                levels[d].append(p.element())
+                for child in self.children(p):
+                    tmp.enqueue(child)
+            return self._BFS_add(d + 1, tmp, levels)
+
     # 先序遍历
     def preorder(self):
         # Generator
@@ -98,3 +119,7 @@ class Tree:
                 yield p
                 for c in self.children(p):
                     fringe.enqueue(c)
+
+
+if __name__ == "__main__":
+    print(dir(Tree))

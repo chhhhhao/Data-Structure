@@ -19,7 +19,7 @@ class AVLTreeMap(TreeMap):
 
     def _recompute_height(self, p):
         node = self._validate(p)
-        node._height = 1 + max(node.left_height() + node.right_height())
+        node._height = 1 + max(node.left_height(), node.right_height())
 
     def _isBalanced(self, p):
         node = self._validate(p)
@@ -31,12 +31,13 @@ class AVLTreeMap(TreeMap):
             return self.left(p)
         else:
             return self.right(p)
-    def _grand_child(self,p):
-        tall_child = self._tall_child(p)
-        favor = (tall_child == self.left(p)
-        return self._tall_child(tall_child,favor)
 
-    def _rebalance(self,p):
+    def _grand_child(self, p):
+        tall_child = self._tall_child(p)
+        favor = tall_child == self.left(p)
+        return self._tall_child(tall_child, favor)
+
+    def _rebalance(self, p):
         while p is not None:
             node = self._validate(p)
             old_height = node._height
@@ -49,9 +50,28 @@ class AVLTreeMap(TreeMap):
                 p = None
             else:
                 p = self.parent(p)
+
     def _rebalance_insert(self, p):
         self._rebalance(p)
-        
+
     def _rebalance_delete(self, p):
         self._rebalance(p)
-            
+
+
+if __name__ == "__main__":
+    import random
+
+    r = random.Random()
+    r.seed()
+    T = AVLTreeMap()
+    data = r.sample(list(range(100)), 20)
+    for i in data:
+        T[i] = i
+    print(list(T))
+    print(len(T))
+    display = T.display()
+    for i in range(len(display)):
+        for j in range(len(display[i])):
+            display[i][j] = display[i][j]._key
+    for l in display:
+        print(l)

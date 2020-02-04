@@ -40,3 +40,7 @@ class BinaryTree(Tree):
 
     def positions(self):
         return self.inorder()
+
+
+if __name__ == "__main__":
+    print(dir(BinaryTree))

@@ -137,3 +137,11 @@ class LinkedBinaryTree(BinaryTree):
             t2._root = None
             t2._size = 0
 
+
+if __name__ == "__main__":
+    T = LinkedBinaryTree()
+    T._add_root(1)
+    root = T.root()
+    T._add_left(root, 2)
+    T._add_right(root, 3)
+    print(T.display())

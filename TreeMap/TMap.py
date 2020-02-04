@@ -21,10 +21,10 @@ class TreeMap(LinkedBinaryTree, MapBase):
             return p
         elif k < p.key():
             if self.left(p) is not None:
-                self._subtree_search(p.left)
+                return self._subtree_search(self.left(p), k)
         else:
             if self.right(p) is not None:
-                self._subtree_search(p.right)
+                return self._subtree_search(self.right(p), k)
         return p
 
     def _subtree_first_position(self, p):
@@ -36,7 +36,7 @@ class TreeMap(LinkedBinaryTree, MapBase):
     def _subtree_last_position(self, p):
         walk = p
         while self.right(p) is not None:
-            wal = self.right(walk)
+            walk = self.right(walk)
         return walk
 
     def first(self):
@@ -48,7 +48,7 @@ class TreeMap(LinkedBinaryTree, MapBase):
     def before(self, p):
         self._validate(p)
         if self.left(p):
-            return self.left(p)
+            return self._subtree_last_position(self.left(p))
         else:
             walk = p
             ancestor = self.parent(p)
@@ -60,13 +60,13 @@ class TreeMap(LinkedBinaryTree, MapBase):
     def after(self, p):
         self._validate(p)
         if self.right(p):
-            return self.right(p)
+            return self._subtree_first_position(self.right(p))
         else:
             walk = p
             ancestor = self.parent(p)
             while ancestor is not None and walk == self.right(ancestor):
                 walk = ancestor
-                ancestor = self.parent(p)
+                ancestor = self.parent(walk)
             return ancestor
 
     def find_position(self, k):
@@ -122,7 +122,7 @@ class TreeMap(LinkedBinaryTree, MapBase):
         else:
             p = self._subtree_search(self.root(), k)
             if p.key() == k:
-                p.element._value = v
+                p.element()._value = v
                 self._rebalance_access(p)
             else:
                 item = self._Item(k, v)
@@ -205,4 +205,3 @@ class TreeMap(LinkedBinaryTree, MapBase):
             self._rotate(x)
             return x
 
-    

@@ -10,6 +10,8 @@ class AVLTreeMap(TreeMap):
         def __init__(self, element=None, parent=None, left=None, right=None):
             super().__init__(element=element, parent=parent, left=left, right=right)
             self._height = 0
+            # 高度在_rebalance中更新
+            # None的高度为0
 
         def left_height(self):
             return self._left._height if self._left is not None else 0
@@ -45,6 +47,7 @@ class AVLTreeMap(TreeMap):
                 p = self._reconstructure(self._grand_child(p))
                 self._recompute_height(self.left(p))
                 self._recompute_height(self.right(p))
+            # 在这里对新的节点计算height
             self._recompute_height(p)
             if p._node._height == old_height:
                 p = None

@@ -1,3 +1,5 @@
+import sys
+sys.path.append("/Users/haochen/Desktop/python/Data Structure")
 from PriorityQueue.HeapQueue import HeapPriorityQueue
 
 

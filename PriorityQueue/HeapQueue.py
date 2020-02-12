@@ -1,4 +1,7 @@
-from QBase import PriorityQueueBase
+import sys, os
+
+sys.path.append("/Users/haochen/Desktop/python/Data Structure")
+from PriorityQueue.QBase import PriorityQueueBase
 
 
 class HeapPriorityQueue(PriorityQueueBase):
@@ -16,10 +19,10 @@ class HeapPriorityQueue(PriorityQueueBase):
         return 2 * j + 2
 
     def _has_left(self, j):
-        return self._left < len(self._data)
+        return self._left(j) < len(self._data)
 
     def _has_right(self, j):
-        return self._right < len(self._data)
+        return self._right(j) < len(self._data)
 
     def _swap(self, i, j):
         self._data[i], self._data[j] = self._data[j], self._data[i]
